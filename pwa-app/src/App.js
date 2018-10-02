@@ -3,40 +3,36 @@ import { connect } from 'react-redux';
 import logo from './logo.jpg';
 import './App.css';
 import { Router, browserHistory, Route, Link } from 'react-router';
-import { simpleAction } from './actions/SimpleAction'
+import { simpleAction } from './actions/simpleAction'
 
-simpleAction = (event) => {
-  this.props.simpleAction();
-};
 
 const Page = ({ title }) => (
   <div className="App">
+    <pre>
+      {
+        JSON.stringify(this.props)
+      }
+    </pre>
     <div className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <h2>{title}</h2>
     </div>
-    <p className="App-intro">
-      This is the {title} page.
+    <div class='ui container'>
+      <p className="App-intro">
+        This is the {title} page.
     </p>
-    <p>
-      <Link to="/">Home</Link>
-    </p>
-    <p>
-      <Link to="/about">About</Link>
-    </p>
-    <p>
-      <Link to="/settings">Settings</Link>
-    </p>
-    <button onClick={this.simpleAction}>Test redux action</button>
+      <div className={'ui inverted menu'}>
+        <Link className={'item'} to="/">Home</Link>
+        <Link className={'item'} to="/about">About</Link>
+        <Link className={'item'} to="/settings">Settings</Link>
+      </div>
+
+      <div>
+        <button className={'ui button'} onClick={this.simpleAction}>Test redux action </button>
+      </div>
+    </div>
   </div>
 );
-
-<pre>
-  {
-    JSON.stringify(this.props)
-  }
-</pre>
-
 
 const Home = (props) => (
   <Page title="Home" />
@@ -53,6 +49,11 @@ const Settings = (props) => (
 
 
 class App extends Component {
+  simpleAction = (event) => {
+    console.log('testbtn');
+    this.props.simpleAction();
+  };
+
   render() {
     return (
       <Router history={browserHistory}>
